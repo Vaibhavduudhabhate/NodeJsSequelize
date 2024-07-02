@@ -1,17 +1,40 @@
-const { DataTypes } = require("sequelize");
-const sequelize = require("./index");
+const { Model } = require("sequelize");
 
-const User = sequelize.define('First',{
-    firstName:{
-        type:DataTypes.STRING,
-        allowNull :false
-    },
-    lastName:{
-        type :DataTypes.STRING
-    }
 
-},{
-    tableName:'First'
-})
+module.exports=(sequelize,DataTypes)=>{
+    class User extends Model {}
 
-// console.log(User === sequelize.model.User)
+    User.init(
+      {
+        first_name:{
+            type:DataTypes.STRING,
+            allowNull :false
+        },
+        last_name:{
+            type :DataTypes.STRING
+        }
+    
+      },
+      {
+        sequelize, 
+        tableName:'First'
+        // modelName: 'User', // We need to choose the model name
+      },
+    );
+return User;
+    // const Contact = sequelize.define('Contact',{
+    //     permanant_address:{
+    //         type:DataTypes.STRING,
+    //         allowNull :false
+    //     },
+    //     current_address:{
+    //         type :DataTypes.STRING
+    //     }
+    
+    // },{
+    //     tableName:'Contact'
+    // })
+    
+    // console.log('true or false',User === sequelize.model.User)
+}
+// module.exports = Contact;

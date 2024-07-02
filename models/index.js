@@ -1,7 +1,8 @@
-const { Sequelize } = require('sequelize');
+const { Sequelize,DataTypes,Model } = require('sequelize');
 
 const sequelize = new Sequelize('First', 'qwt_root', 'Dbs@11**', {
     host: 'localhost',
+    logging:false,
     dialect: "mysql" 
   });
 
@@ -12,4 +13,12 @@ const sequelize = new Sequelize('First', 'qwt_root', 'Dbs@11**', {
     console.error('Unable to connect to the database:', error);
   }
 
-//   module.exports = sequelize;
+  const db = {}
+  db.sequelize = Sequelize;
+  db.sequelize =sequelize;
+
+  db.Contact =  require('./contact')(sequelize,DataTypes)
+  db.User =  require('./user')(sequelize,DataTypes,Model)
+  db.sequelize.sync({force : true})
+
+  module.exports = db;
