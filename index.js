@@ -5,6 +5,22 @@ var bodyParser = require('body-parser');
 var userCtrl = require('./controllers/userController')
 require('./models')
 const app = express();
+var corsOptions = {
+    origin: "*",
+    optionsSuccessStatus: 200,
+  };
+  
+  app.use(
+    express.urlencoded({
+      extended: false, // Made false so that attendance code will run
+      // limit: "200mb",
+    })
+  );
+  
+  app.use(bodyParser.json());
+  const cors = require("cors");
+  app.use(cors(corsOptions));
+//   const bodyParser = require("body-parser");
 
 PORT = 3001;
 
@@ -13,7 +29,14 @@ app.use(bodyParser.json());
 app.get('/',function (req,res){
     res.send('Hello world');
 })
-app.get('/add',userCtrl.adduser)
+app.post('/add',userCtrl.adduser);
+app.get('/users',userCtrl.getallusers)
+app.get('/user/:id',userCtrl.getuser)
+
+app.post('/users',userCtrl.postusers)
+app.delete('/user/:id',userCtrl.deleteuser)
+app.patch('/user/:id',userCtrl.patchuser)
+
 
 // User.sync();
 // Contact.sync()

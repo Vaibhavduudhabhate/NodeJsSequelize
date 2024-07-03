@@ -19,6 +19,6 @@ const sequelize = new Sequelize('First', 'qwt_root', 'Dbs@11**', {
 
   db.Contact =  require('./contact')(sequelize,DataTypes)
   db.User =  require('./user')(sequelize,DataTypes,Model)
-  db.sequelize.sync({force : true})
+  db.sequelize.sync({force : false})
 
   module.exports = db;
