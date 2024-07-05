@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 // const User = require('./models/user');
 // const Contact = require('./models/contact');
 var userCtrl = require('./controllers/userController')
+// var paginateUser = require("./controllers/userController")
 require('./models')
 const app = express();
 var corsOptions = {
@@ -12,7 +13,7 @@ var corsOptions = {
   
   app.use(
     express.urlencoded({
-      extended: false, // Made false so that attendance code will run
+      extended: false, 
       // limit: "200mb",
     })
   );
@@ -37,6 +38,8 @@ app.post('/users',userCtrl.postusers)
 app.delete('/user/:id',userCtrl.deleteuser)
 app.patch('/user/:id',userCtrl.patchuser)
 
+app.get('/pagin',userCtrl.pagination)
+app.get('/pagination',userCtrl.userList)
 
 // User.sync();
 // Contact.sync()
