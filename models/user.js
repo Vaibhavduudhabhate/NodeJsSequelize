@@ -18,7 +18,6 @@ module.exports=(sequelize,DataTypes)=>{
       {
         sequelize, 
         tableName:'First'
-        // modelName: 'User', // We need to choose the model name
       },
     );
 return User;

@@ -77,8 +77,6 @@ var patchuser = async(req,res)=>{
     res.status(200).json({data:data})
 }
 
-
-
 module.exports = {
     adduser,getallusers,getuser,postusers,deleteuser,patchuser
 }

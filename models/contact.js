@@ -22,8 +22,5 @@ module.exports=(sequelize,DataTypes)=>{
       },
     );
 return Contact;
-   
-    
-    // console.log('true or false',Contact === sequelize.model.Contact)
 }
 // module.exports = Contact;
