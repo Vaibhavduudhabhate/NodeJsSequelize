@@ -245,6 +245,11 @@ const userList = async (req, res, next) => {
 //        }
 // }}
 
+
+var association = async(req,res)=>{
+  res.send('hello world');
+}
+
 module.exports = {
-    adduser,getallusers,getuser,postusers,deleteuser,patchuser,pagination,userList
+    adduser,getallusers,getuser,postusers,deleteuser,patchuser,pagination,userList,association
 }

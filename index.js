@@ -41,6 +41,8 @@ app.patch('/user/:id',userCtrl.patchuser)
 app.get('/pagin',userCtrl.pagination)
 app.get('/pagination',userCtrl.userList)
 
+app.get('/associatons',userCtrl.association)
+
 // User.sync();
 // Contact.sync()
 // User.sync({force : true});
