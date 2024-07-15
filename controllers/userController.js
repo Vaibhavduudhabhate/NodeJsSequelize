@@ -250,6 +250,12 @@ var association = async(req,res)=>{
   res.send('hello world');
 }
 
+var oneToOneUser = async(req,res)=>{
+
+  
+  res.status(200).json({data:data})
+}
+
 module.exports = {
-    adduser,getallusers,getuser,postusers,deleteuser,patchuser,pagination,userList,association
+    adduser,getallusers,getuser,postusers,deleteuser,patchuser,pagination,userList,association,oneToOneUser
 }

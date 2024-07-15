@@ -17,8 +17,12 @@ const sequelize = new Sequelize('First', 'qwt_root', 'Dbs@11**', {
   db.sequelize = Sequelize;
   db.sequelize =sequelize;
 
-  db.Contact =  require('./contact')(sequelize,DataTypes)
   db.User =  require('./user')(sequelize,DataTypes,Model)
+  db.Contact =  require('./contact')(sequelize,DataTypes)
+
+  db.User.hasOne(db.Contact)
+  db.Contact.belongsTo(db.User)
+  
   db.sequelize.sync({force : false})
 
   module.exports = db;

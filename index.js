@@ -42,6 +42,7 @@ app.get('/pagin',userCtrl.pagination)
 app.get('/pagination',userCtrl.userList)
 
 app.get('/associatons',userCtrl.association)
+app.get('/one-to-one',userCtrl.oneToOneUser)
 
 // User.sync();
 // Contact.sync()
