@@ -6,6 +6,7 @@ var userCtrl = require('./controllers/userController')
 // var paginateUser = require("./controllers/userController")
 require('./models')
 const app = express();
+app.use(express.json());
 var corsOptions = {
     origin: "*",
     optionsSuccessStatus: 200,
@@ -42,7 +43,9 @@ app.get('/pagin',userCtrl.pagination)
 app.get('/pagination',userCtrl.userList)
 
 app.get('/associatons',userCtrl.association)
-app.get('/one-to-one',userCtrl.oneToOneUser)
+app.get('/one-to-one',userCtrl.oneToOneUser);
+app.get('/one-to-many',userCtrl.oneToManyUser);
+
 
 // User.sync();
 // Contact.sync()

@@ -1,8 +1,10 @@
 const db = require("../models");
 // const { userService } = require("../services/userServices");
 const User = db.User ;
+const Contact = db.Contact;
 
 var adduser = async(req,res)=>{
+  console.log(req.body)
     try {
         const { first_name, last_name } = req.body;
 
@@ -252,10 +254,75 @@ var association = async(req,res)=>{
 
 var oneToOneUser = async(req,res)=>{
 
-  
-  res.status(200).json({data:data})
+  // var data = await User.create({first_name:"rahul",last_name:"yadav"})
+  console.log(req.body)
+    // try {
+    //     const { first_name, last_name } = req.body;
+
+    //     const data = await User.create({
+    //         first_name,
+    //         last_name
+    //       });
+          
+    //       if(data && data.id){
+    //         await db.Contact.create({permanant_address:"xyz",current_address:"abc",user_id:data.id});
+    //       }
+    //     console.log('New user created:', data.toJSON());
+    //     res.status(200).json({data:data});
+    //     // res.status(200).json({data:data})
+    // } catch (error) {
+    //     console.error('Error creating new user:', error);
+    //     res.status(500).json({ error: 'Failed to add new user' });
+    // }
+
+    var data = await User.findAll({
+      attributes:["first_name","last_name"],
+      include :[{
+        model:Contact,
+        as:"contact_details",
+        attributes:["permanant_address","current_address","user_id"]
+
+      }] 
+    })
+    res.status(200).json({data:data})
+}
+
+var oneToManyUser = async(req,res)=>{
+
+  // var data = await db.Contact.create({permanant_address:"pqr",current_address:"lmn",user_id:1})
+  // console.log(req.body)
+    // try {
+    //     const { first_name, last_name } = req.body;
+
+    //     const data = await User.create({
+    //         first_name,
+    //         last_name
+    //       });
+          
+    //       if(data && data.id){
+    //         await db.Contact.create({permanant_address:"xyz",current_address:"abc",user_id:data.id});
+    //       }
+    //     console.log('New user created:', data.toJSON());
+    //     res.status(200).json({data:data});
+    //     // res.status(200).json({data:data})
+    // } catch (error) {
+    //     console.error('Error creating new user:', error);
+    //     res.status(500).json({ error: 'Failed to add new user' });
+    // }
+
+    var data = await User.findAll({
+      attributes:["first_name","last_name"],
+      include :[{
+        model:Contact,
+        as:"contact_details",
+        attributes:["permanant_address","current_address","user_id"]
+
+      }],
+      where:{id:1} 
+    })
+    res.status(200).json({data:data})
 }
 
 module.exports = {
-    adduser,getallusers,getuser,postusers,deleteuser,patchuser,pagination,userList,association,oneToOneUser
+    adduser,getallusers,getuser,postusers,deleteuser,patchuser,pagination,userList,association,oneToOneUser,oneToManyUser
 }
